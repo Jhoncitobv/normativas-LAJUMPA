@@ -1,243 +1,766 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>LA JUMPA RP — Normativas</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LA JUMPA RP — Normativas</title>
+  <meta name="description" content="Normativas oficiales — LA JUMPA RP (FiveM)" />
 
-<style>
-:root{
-  --bg:#07060b;
-  --text:rgba(255,255,255,.92);
-  --muted:rgba(255,255,255,.65);
-  --line:rgba(255,255,255,.10);
-  --r:22px;
-  --a:#ff2bb4;
-  --b:#ff6a00;
-}
+  <style>
+    :root{
+      --bg:#07060b;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(0,0,0,.35);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.65);
+      --line: rgba(255,255,255,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --r: 22px;
 
-/* BASE */
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:system-ui,Segoe UI,Roboto,Arial;
-  background:
-    radial-gradient(1200px 800px at 15% 10%, rgba(255,43,180,.18), transparent 55%),
-    radial-gradient(900px 600px at 80% 80%, rgba(255,106,0,.15), transparent 55%),
-    var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
+      /* “GTA6 vibe” (neón atardecer) */
+      --a: #ff2bb4;
+      --b: #ff6a00;
+      --c: #7c3cff;
+      --d: #00d0ff;
+    }
 
-/* HEADER */
-header{
-  position:sticky;top:0;z-index:10;
-  backdrop-filter:blur(12px);
-  background:rgba(0,0,0,.55);
-  border-bottom:1px solid var(--line);
-}
-.nav{
-  max-width:1180px;margin:auto;
-  padding:14px 18px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.brand{display:flex;gap:12px;align-items:center}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 800px at 15% 10%, rgba(255,43,180,.18), transparent 55%),
+                  radial-gradient(1000px 700px at 85% 15%, rgba(0,208,255,.14), transparent 55%),
+                  radial-gradient(900px 600px at 60% 80%, rgba(124,60,255,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    /* Grain + glow overlay */
+    .fx{
+      pointer-events:none;
+      position:fixed; inset:0;
+      background:
+        radial-gradient(900px 400px at 30% 20%, rgba(255,106,0,.10), transparent 60%),
+        radial-gradient(700px 380px at 70% 30%, rgba(255,43,180,.12), transparent 60%),
+        radial-gradient(700px 500px at 60% 85%, rgba(0,208,255,.10), transparent 65%);
+      mix-blend-mode: screen;
+      opacity:.9;
+      z-index:0;
+    }
+    .grain{
+      pointer-events:none;
+      position:fixed; inset:-20%;
+      background-image:url("assets/grain.png"); /* opcional */
+      background-size:300px 300px;
+      opacity:.10;
+      filter:contrast(120%);
+      animation: grainMove 10s steps(10) infinite;
+      z-index:0;
+    }
+    @keyframes grainMove{
+      0%{ transform:translate(0,0) }
+      10%{ transform:translate(-2%, -3%) }
+      20%{ transform:translate(-4%, 1%) }
+      30%{ transform:translate(2%, -2%) }
+      40%{ transform:translate(-1%, 3%) }
+      50%{ transform:translate(-3%, -1%) }
+      60%{ transform:translate(3%, 2%) }
+      70%{ transform:translate(1%, -3%) }
+      80%{ transform:translate(-2%, 2%) }
+      90%{ transform:translate(2%, 1%) }
+      100%{ transform:translate(0,0) }
+    }
+
+    /* Top bar */
+    header{
+      position:sticky; top:0;
+      z-index:5;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.10));
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      max-width:1180px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width:220px;
+    }
 .logo{
-  width:42px;height:42px;border-radius:14px;
-  background:linear-gradient(135deg,#ff1a1a,#0a0a0a);
-}
-.links a,.btn{
-  text-decoration:none;
-  padding:10px 14px;
-  border-radius:999px;
-  border:1px solid var(--line);
-}
-.links a{color:#fff}
-.btn{
-  background:linear-gradient(135deg,var(--b),var(--a));
-  color:#000;font-weight:700;cursor:pointer;border:none;
-}
-.btn.ghost{background:rgba(255,255,255,.06);color:#fff}
-
-/* HERO */
-.hero{
-  max-width:1180px;margin:40px auto;
-  padding:0 18px;
-  display:grid;grid-template-columns:1.1fr .9fr;
-  gap:18px;
-}
-.card{
-  border-radius:var(--r);
-  border:1px solid var(--line);
-  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(0,0,0,.3));
-  padding:22px;
-}
-h1{font-size:48px;margin:0}
-.grad{
-  background:linear-gradient(90deg,var(--b),var(--a));
-  -webkit-background-clip:text;color:transparent;
+  width:42px; height:42px;
+  border-radius:14px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 50%),
+    linear-gradient(135deg, #ff1a1a 0%, #7a0000 35%, #0a0a0a 100%);
+  box-shadow: 0 10px 30px rgba(255,0,0,.25);
+  border:1px solid rgba(255,255,255,.12);
+  overflow:hidden;
+  display:grid; place-items:center;
+  position:relative;
 }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:30px;
-  color:var(--muted);
-}
+    .logo img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block; /* si pones tu logo, cambia a block */
+    }
+    .brand b{ letter-spacing:.2px; }
+    .brand small{ display:block; color:var(--muted); margin-top:1px; }
 
-/* ===== MODAL ===== */
-.modal-overlay{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.75);
-  backdrop-filter:blur(14px);
-  display:none;
-  align-items:center;justify-content:center;
-  z-index:9999;
-}
-.modal{
-  width:min(920px,92vw);
-  max-height:85vh;
-  background:linear-gradient(180deg,#141418,#050508);
-  border-radius:22px;
-  border:1px solid var(--line);
-  display:flex;flex-direction:column;
-  animation:modalIn .25s ease;
-}
-@keyframes modalIn{
-  from{opacity:0;transform:translateY(20px) scale(.96)}
-  to{opacity:1;transform:none}
-}
-.modal-header{
-  padding:18px 20px;
-  display:flex;justify-content:space-between;align-items:center;
-  border-bottom:1px solid var(--line);
-}
-.modal-close{
-  background:none;border:none;
-  color:#fff;font-size:22px;cursor:pointer;
-}
-.modal-content{
-  padding:18px 20px;
-  overflow-y:auto;
-}
-.modal-content h3{margin-top:22px}
-.modal-content ul{padding-left:18px}
-.modal-content::-webkit-scrollbar{width:6px}
-.modal-content::-webkit-scrollbar-thumb{
-  background:rgba(255,255,255,.25);border-radius:10px;
-}
+    .links{
+      display:flex; align-items:center; gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .links a{
+      color:rgba(255,255,255,.78);
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      transition:.2s ease;
+      font-size:14px;
+    }
+    .links a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+    }
+    .cta{
+      display:flex; gap:10px; align-items:center;
+      min-width:220px;
+      justify-content:flex-end;
+    }
+    .btn{
+      appearance:none; border:0; cursor:pointer;
+      padding:10px 14px;
+      border-radius:999px;
+      color:#0b0610;
+      font-weight:700;
+      letter-spacing:.2px;
+      background: linear-gradient(135deg, var(--b), var(--a));
+      box-shadow: 0 12px 40px rgba(255,43,180,.18);
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); filter:saturate(1.05); }
+    .btn.ghost{
+      color:#fff;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:none;
+    }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-}
-</style>
+    /* Hero */
+    main{ position:relative; z-index:1; }
+    .hero{
+      max-width:1180px;
+      margin:0 auto;
+      padding:48px 18px 22px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .heroCard{
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(0,0,0,.22));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      min-height: 420px;
+    }
+    .heroCard::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(800px 420px at 30% 20%, rgba(255,106,0,.18), transparent 60%),
+        radial-gradient(700px 380px at 75% 40%, rgba(255,43,180,.18), transparent 60%),
+        radial-gradient(700px 420px at 60% 90%, rgba(0,208,255,.12), transparent 65%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .heroInner{
+      position:relative;
+      padding:28px 26px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      height:100%;
+    }
+
+    .tagRow{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+      margin-bottom:2px;
+    }
+    .tag{
+      font-size:12px;
+      color:rgba(255,255,255,.82);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      backdrop-filter: blur(12px);
+    }
+    .tag.hot{
+      border-color: rgba(255,43,180,.35);
+      background: rgba(255,43,180,.12);
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height:1.02;
+      letter-spacing:-.8px;
+      text-transform: uppercase;
+    }
+    .gradText{
+      background: linear-gradient(90deg, var(--b), var(--a), var(--c), var(--d));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      filter: drop-shadow(0 14px 40px rgba(255,43,180,.10));
+    }
+    .lead{
+      margin:0;
+      color:rgba(255,255,255,.74);
+      font-size:16px;
+      line-height:1.5;
+      max-width: 60ch;
+    }
+    .heroActions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:6px;
+    }
+    .heroActions .btn{ padding:12px 16px; }
+
+    .mini{
+      margin-top:auto;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color:rgba(255,255,255,.70);
+      font-size:13px;
+    }
+    .pill{
+      display:flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      backdrop-filter: blur(12px);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--a), var(--d));
+      box-shadow: 0 0 0 6px rgba(255,43,180,.10);
+    }
+
+    /* Right side (media) */
+    .mediaCard{
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.26));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      min-height: 420px;
+    }
+    .media{
+      position:absolute; inset:0;
+    }
+    .media video, .media img{
+      width:100%; height:100%;
+      object-fit:cover;
+      transform: scale(1.05);
+      filter:saturate(1.05) contrast(1.05);
+    }
+    .mediaOverlay{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.20) 60%, rgba(0,0,0,.15)),
+        radial-gradient(600px 350px at 20% 15%, rgba(255,106,0,.16), transparent 60%),
+        radial-gradient(600px 350px at 75% 35%, rgba(255,43,180,.16), transparent 60%);
+    }
+    .mediaText{
+      position:absolute;
+      left:16px; right:16px; bottom:16px;
+      padding:14px 14px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(14px);
+    }
+    .mediaText b{ font-size:14px; }
+    .mediaText p{ margin:6px 0 0; color:rgba(255,255,255,.70); font-size:13px; line-height:1.35; }
+
+    /* Sections */
+    .wrap{
+      max-width:1180px;
+      margin:0 auto;
+      padding: 10px 18px 70px;
+    }
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .card{
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      box-shadow: 0 16px 55px rgba(0,0,0,.45);
+      overflow:hidden;
+      position:relative;
+    }
+    .cardInner{
+      padding:18px 18px;
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .card p, .card li{
+      color:rgba(255,255,255,.72);
+      line-height:1.55;
+      font-size:14px;
+    }
+    .list{
+      margin:0;
+      padding-left:18px;
+    }
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      margin:12px 0;
+    }
+
+    /* Accordion rules */
+    .acc{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:10px;
+    }
+    details{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .chev{
+      width:34px; height:34px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.04);
+      transition:.2s ease;
+      flex:0 0 auto;
+    }
+    details[open] .chev{ transform: rotate(180deg); }
+    .content{
+      padding: 0 14px 14px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    /* Footer */
+    footer{
+      max-width:1180px;
+      margin:0 auto;
+      padding: 0 18px 34px;
+      color:rgba(255,255,255,.55);
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .footerLinks a{
+      color:rgba(255,255,255,.65);
+      text-decoration:none;
+      margin-left:10px;
+    }
+    .footerLinks a:hover{ color:#fff; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero{ grid-template-columns:1fr; }
+      .cta{ justify-content:flex-start; min-width:auto; }
+      .brand{ min-width:auto; }
+      .grid{ grid-template-columns:1fr; }
+      .mediaCard, .heroCard{ min-height: 360px; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="fx"></div>
+  <div class="grain"></div>
 
-<header>
-  <div class="nav">
-    <div class="brand">
-      <div class="logo"></div>
-      <b>LA JUMPA RP</b>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" title="Logo">
+          <!-- Si tienes logo: descomenta y pon tu ruta -->
+          <img src="assets/logo.png" alt="LA JUMPA RP">
+        </div>
+        <div>
+          <b>LA JUMPA RP</b>
+          <small>Normativas oficiales • FiveM</small>
+        </div>
+      </div>
+
+      <nav class="links">
+        <a href="#conceptos">Conceptos</a>
+        <a href="#normas">Normas</a>
+        <a href="#zonas">Zonas seguras</a>
+        <a href="#sanciones">Sanciones</a>
+      </nav>
+
+      <div class="cta">
+        <button class="btn ghost" id="copyDiscord">Copiar Discord</button>
+        <a class="btn" href="https://discord.gg/TU_INVITACION_AQUI" target="_blank" rel="noopener">Entrar a Discord</a>
+      </div>
     </div>
-    <div class="links">
-      <button class="btn" onclick="openNormas()">Ver Normas</button>
-      <a class="btn ghost" href="https://discord.gg/TU_INVITACION_AQUI" target="_blank">Discord</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="heroCard" id="top">
+        <div class="heroInner">
+          <div class="tagRow">
+            <span class="tag hot">CINEMATIC</span>
+            <span class="tag">ROLEPLAY</span>
+            <span class="tag">FIVEM</span>
+            <span class="tag">LA JUMPA RP</span>
+          </div>
+
+          <h1>
+            Normativas<br>
+            <span class="gradText">LA JUMPA RP</span>
+          </h1>
+
+          <p class="lead">
+            Reglas claras, rol serio y progresivo.
+            El desconocimiento de las normas <b>no exime de sanción</b>.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn" href="#normas">Ver Normas</a>
+            <a class="btn ghost" href="#conceptos">Conceptos de rol</a>
+          </div>
+
+          <div class="mini">
+            <div class="pill"><span class="dot"></span> Staff activo • Reportes por Discord</div>
+            <div class="pill">🚫 MG/PG/FailRP • 🛡️ Zonas seguras</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mediaCard" aria-label="Media cinematic">
+        <div class="media" id="parallax">
+          <!-- OPCIÓN A: VIDEO (recomendado) -->
+          <video autoplay muted loop playsinline poster="assets/poster.jpg">
+            <source src="assets/bg.mp4" type="video/mp4">
+          </video>
+
+          <!-- OPCIÓN B: IMAGEN (si no usas video) -->
+          <!-- <img src="assets/hero.jpg" alt="Cinematic FiveM"> -->
+
+          <div class="mediaOverlay"></div>
+
+          <div class="mediaText">
+            <b>• cinematicas RP</b>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="grid">
+        <article class="card" id="conceptos">
+          <div class="cardInner">
+            <h2>🧠 Conceptos básicos de rol</h2>
+            <p>Lo más importante para mantener calidad y realismo dentro del servidor.</p>
+
+<div class="acc">
+  <details open>
+    <summary>
+      <b>❌ MetaGaming (MG)</b>
+      <span class="chev">⌄</span>
+    </summary>
+    <div class="content">
+      <p>
+        Usar información obtenida fuera del juego (Discord, streams, chats)
+        para beneficio dentro del rol.
+      </p>
     </div>
-  </div>
-</header>
+  </details>
 
-<main class="hero">
-  <div class="card">
-    <h1>Normativas<br><span class="grad">LA JUMPA RP</span></h1>
-    <p>Servidor <b>RP LIBRE</b>. Acción, creatividad y libertad total.</p>
-  </div>
-  <div class="card">
-    <p>❌ MG prohibido<br>✅ PG permitido<br>🔥 RP agresivo</p>
-  </div>
-</main>
-
-<footer>
-© <span id="year"></span> LA JUMPA RP
-</footer>
-
-<!-- ========= MODAL NORMAS ========= -->
-<div id="normasModal" class="modal-overlay" onclick="closeOutside(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <h2>📜 Normativas Generales – LA JUMPA RP</h2>
-      <button class="modal-close" onclick="closeNormas()">✕</button>
+  <details>
+    <summary>
+      <b>✅ PowerGaming (PG) — PERMITIDO</b>
+      <span class="chev">⌄</span>
+    </summary>
+    <div class="content">
+      <p>
+        En <b>LA JUMPA RP</b> el PowerGaming está <b>permitido</b>.
+        Los jugadores tienen libertad total para realizar acciones creativas,
+        intensas y fuera de lo convencional.
+      </p>
+      <ul class="list">
+        <li>No usar bugs, glitches o exploits.</li>
+        <li>No romper el servidor de forma intencional.</li>
+        <li>No faltar el respeto OOC a otros jugadores.</li>
+      </ul>
+      <p>
+        La prioridad del servidor es la <b>diversión y libertad de rol</b>.
+      </p>
     </div>
+  </details>
 
-    <div class="modal-content">
-      <h3>🧠 Rol</h3>
-      <ul>
-        <li>❌ MetaGaming prohibido.</li>
-        <li>✅ PowerGaming permitido.</li>
-        <li>Rol libre, intenso y creativo.</li>
-      </ul>
-
-      <h3>🔫 Combate</h3>
-      <ul>
-        <li>RDM y VDM permitidos dentro del rol.</li>
-        <li>Prohibido abuso repetitivo sin contexto.</li>
-      </ul>
-
-      <h3>🕵️ Criminal</h3>
-      <ul>
-        <li>Robos, secuestros y asesinatos permitidos.</li>
-        <li>Traiciones y emboscadas válidas.</li>
-      </ul>
-
-      <h3>🚓 Policía</h3>
-      <ul>
-        <li>Uso de fuerza libre.</li>
-        <li>No obligación de negociar.</li>
-      </ul>
-
-      <h3>🚗 Vehículos</h3>
-      <ul>
-        <li>Conducción agresiva permitida.</li>
-      </ul>
-
-      <h3>💀 Muerte</h3>
-      <ul>
-        <li>El jugador decide continuidad del rol.</li>
-      </ul>
-
-      <h3>⚠️ Bugs y OOC</h3>
-      <ul>
-        <li>❌ Prohibido usar exploits.</li>
-        <li>❌ Prohibido insultar OOC.</li>
-      </ul>
-
-      <h3>⚖️ Staff</h3>
-      <ul>
-        <li>Interviene solo en abusos reales.</li>
-        <li>Decisión final.</li>
-      </ul>
+  <details>
+    <summary>
+      <b>❌ Fail RP</b>
+      <span class="chev">⌄</span>
+    </summary>
+    <div class="content">
+      <p>
+        Actuar sin ningún tipo de coherencia mínima con el personaje
+        o romper el entorno del servidor de forma intencional.
+      </p>
     </div>
-  </div>
+  </details>
 </div>
 
-<script>
-document.getElementById("year").textContent=new Date().getFullYear();
+        </article>
 
-function openNormas(){
-  document.getElementById("normasModal").style.display="flex";
-}
-function closeNormas(){
-  document.getElementById("normasModal").style.display="none";
-}
-function closeOutside(e){
-  if(e.target.id==="normasModal") closeNormas();
-}
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape") closeNormas();
-});
-</script>
+<article class="card" id="normas">
+  <div class="cardInner">
+    <h2>📌 Normas Generales – LA JUMPA RP</h2>
+    <p>
+      <b>LA JUMPA RP</b> es un servidor de <b>ROL LIBRE</b>.
+      Se prioriza la diversión, la acción y la creatividad de los jugadores.
+      El desconocimiento de las normas <b>NO exime de sanción</b>.
+    </p>
 
+    <div class="divider"></div>
+
+    <h3>🧠 Normas de Rol</h3>
+    <ul class="list">
+      <li>❌ MetaGaming (MG) está prohibido.</li>
+      <li>✅ PowerGaming (PG) está permitido.</li>
+      <li>El rol puede ser agresivo, intenso y poco realista.</li>
+      <li>El Fail RP solo será sancionado si es abuso intencional.</li>
+      <li>Está permitido forzar situaciones dentro del rol.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h3>🔫 Combate, RDM y VDM</h3>
+    <ul class="list">
+      <li>El RDM y VDM están permitidos si forman parte del rol.</li>
+      <li>Prohibido matar repetidamente sin ningún contexto.</li>
+      <li>Las venganzas, emboscadas y conflictos están permitidos.</li>
+      <li>Se permite iniciar rol violento sin negociación previa.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h3>🕵️ Rol Criminal</h3>
+    <ul class="list">
+      <li>Robos, secuestros, asesinatos y extorsiones están permitidos.</li>
+      <li>No hay límite estricto de integrantes por banda.</li>
+      <li>Se permite traición entre jugadores y organizaciones.</li>
+      <li>No está prohibido campear zonas ilegales.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h3>🚓 Rol Policial</h3>
+    <ul class="list">
+      <li>La policía puede usar fuerza letal cuando lo considere necesario.</li>
+      <li>No existe obligación de negociación.</li>
+      <li>Se permite rol agresivo y persecuciones extremas.</li>
+      <li>Las decisiones policiales forman parte del rol.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h3>🚗 Vehículos</h3>
+    <ul class="list">
+      <li>Se permite conducción agresiva y persecuciones irreales.</li>
+      <li>El VDM es válido dentro del rol.</li>
+      <li>No se sanciona por daños vehiculares.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h3>💀 Entornos de Muerte</h3>
+    <ul class="list">
+      <li>El jugador decide si recuerda o no el rol tras morir.</li>
+      <li>No existe CK obligatorio.</li>
+      <li>Se permite volver a conflictos previos si el jugador lo desea.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h3>⚠️ Uso de Bugs y OOC</h3>
+    <ul class="list">
+      <li>❌ Prohibido usar bugs, glitches o exploits.</li>
+      <li>❌ Prohibido insultar o atacar OOC.</li>
+      <li>❌ Prohibido romper el servidor de forma intencional.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h3>⚖️ Staff y Sanciones</h3>
+    <ul class="list">
+      <li>El staff interviene solo en casos graves.</li>
+      <li>No se sanciona el rol creativo.</li>
+      <li>Las sanciones se aplican solo por abuso real.</li>
+      <li>La decisión del staff es final.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <p style="color:rgba(255,255,255,.65)">
+      LA JUMPA RP es un servidor <b>libre</b>.  
+      Juega, crea, pelea y disfruta sin límites.
+    </p>
+  </div>
+</article>
+
+
+        <article class="card" id="zonas">
+          <div class="cardInner">
+            <h2>🏙️ Zonas seguras</h2>
+            <p>En zonas seguras está prohibido iniciar rol criminal.</p>
+            <div class="divider"></div>
+            <ul class="list">
+              <li>Hospitales</li>
+              <li>Comisarías</li>
+              <li>Concesionarios</li>
+              <li>Spawn inicial</li>
+              <li>Garajes públicos (según indique el staff)</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card" id="sanciones">
+          <div class="cardInner">
+            <h2>⚖️ Sanciones</h2>
+            <p>Las sanciones se aplican según gravedad y reincidencia.</p>
+            <div class="divider"></div>
+            <ul class="list">
+              <li>Advertencia</li>
+              <li>Jail administrativo</li>
+              <li>Kick</li>
+              <li>Ban temporal</li>
+              <li>Ban permanente</li>
+            </ul>
+            <div class="divider"></div>
+            <p style="color:rgba(255,255,255,.65)">Última actualización: <span id="lastUpdate"></span></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> LA JUMPA RP • Normativas Oficiales</div>
+      <div class="footerLinks">
+        <a href="#top">Volver arriba</a>
+        <a href="https://discord.gg/TU_INVITACION_AQUI" target="_blank" rel="noopener">Discord</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Año / fecha
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('lastUpdate').textContent =
+      new Date().toLocaleDateString('es-CL', { year:'numeric', month:'long', day:'2-digit' });
+
+    // Copiar Discord
+    document.getElementById('copyDiscord').addEventListener('click', async () => {
+      const link = "https://discord.gg/TU_INVITACION_AQUI";
+      try{
+        await navigator.clipboard.writeText(link);
+        toast("✅ Discord copiado al portapapeles");
+      }catch(e){
+        toast("⚠️ No se pudo copiar. Copia manual: " + link);
+      }
+    });
+
+    // Mini toast sin librerías
+    const toast = (msg) => {
+      let t = document.getElementById('toast');
+      if(!t){
+        t = document.createElement('div');
+        t.id = 'toast';
+        t.style.position = 'fixed';
+        t.style.left = '50%';
+        t.style.bottom = '26px';
+        t.style.transform = 'translateX(-50%)';
+        t.style.padding = '12px 14px';
+        t.style.borderRadius = '999px';
+        t.style.border = '1px solid rgba(255,255,255,.14)';
+        t.style.background = 'rgba(0,0,0,.45)';
+        t.style.backdropFilter = 'blur(14px)';
+        t.style.color = 'rgba(255,255,255,.92)';
+        t.style.zIndex = '999';
+        t.style.fontSize = '14px';
+        t.style.boxShadow = '0 18px 60px rgba(0,0,0,.55)';
+        t.style.opacity = '0';
+        t.style.transition = 'opacity .2s ease, transform .2s ease';
+        document.body.appendChild(t);
+      }
+      t.textContent = msg;
+      t.style.opacity = '1';
+      t.style.transform = 'translateX(-50%) translateY(-2px)';
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        t.style.opacity = '0';
+        t.style.transform = 'translateX(-50%) translateY(6px)';
+      }, 2200);
+    };
+
+    // Parallax suave en la tarjeta de media
+    const par = document.getElementById('parallax');
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 8;
+      par.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    });
+  </script>
 </body>
 </html>
